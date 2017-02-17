@@ -1,7 +1,7 @@
 # import numpy as np
 # import cv2
-# import subprocess as sp
 # import json
+import subprocess as sp
 from goprohero import GoProHero
 import urllib
 from time import sleep
@@ -21,8 +21,12 @@ startingimgnum = 2448 #This number needs to be set every time the program runs
 while True:
 	camera.command('record', 'on')
 	sleep(1.5) # wait for the gopro to save the picture
-	urllib.urlretrieve("http://10.5.5.9:8080/videos/DCIM/102GOPRO/GOPR{0}.JPG".format(startingimgnum), "{0}.jpg".format(startingimgnum))
+	filename = "{0}.jpg".format(startingimgnum)
+	url = "http://10.5.5.9:8080/videos/DCIM/102GOPRO/GOPR{0}.JPG".format(startingimgnum)
+	urllib.urlretrieve(url, filename)
 	sleep(5)
+	sp.call(["target_spotter", filename])
+
 
 
 
