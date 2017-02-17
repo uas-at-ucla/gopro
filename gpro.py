@@ -26,6 +26,7 @@ while True:
 	urllib.urlretrieve(url, filename)
 	sleep(5)
 	sp.call(["target_spotter", filename])
+	startingimgnum = startingimgnum + 1
 
 
 
